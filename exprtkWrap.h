@@ -11,6 +11,8 @@
 #include "exprtkIF.h"
 #include <string>
 
+#define ERROR_ALLOCATION_FAILED 0x30008
+
 class exprtkWrap: public exprtkIF
 {
 public:
