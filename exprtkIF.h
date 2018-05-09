@@ -15,10 +15,9 @@ public:
   exprtkIF ();
   virtual ~exprtkIF ();
   virtual int addVariable(const std::string& variableName, double& d)=0;
-  //virtual int setExpression(std::string expressionString)=0;
-  //virtual std::string *getExpression()=0;
   virtual int compile(std::string expressionString)=0;
   virtual void refresh()=0;
+  virtual std::string getParserError()=0;
 };
 
 #endif /* M_EPICS_EXPRTK_EXPRTKIF_H_ */

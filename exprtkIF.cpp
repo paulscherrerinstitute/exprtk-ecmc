@@ -9,12 +9,9 @@
 
 exprtkIF::exprtkIF ()
 {
-  // TODO Auto-generated constructor stub
-
 }
 
 exprtkIF::~exprtkIF ()
 {
-  // TODO Auto-generated destructor stub
 }
 
