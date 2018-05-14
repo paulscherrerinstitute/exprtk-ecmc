@@ -11,7 +11,10 @@ PROJECT=exprtk
 # Temporally removed to speed up 
 EXCLUDE_ARCHS += eldk
 
-HEADERS = exprtkWrap.h
+HEADERS = \
+  exprtkWrap.h \
+  exprtkIF.h \
+
 
 SOURCES = \
   exprtkIF.cpp \
