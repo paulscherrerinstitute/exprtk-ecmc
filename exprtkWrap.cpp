@@ -8,6 +8,32 @@
 #include "exprtkWrap.h"
 #include "exprtkImp.h"
 
+#define generate_add_function_wrap_cpp(NN)                                               \
+int exprtkWrap::addFunction(const std::string& function_name, ff##NN##_functor function) \
+{                                                                                        \
+  if(!exprtk_){                                                                          \
+    return ERROR_ALLOCATION_FAILED;                                                      \
+  }                                                                                      \
+  return exprtk_->addFunction(function_name,function);                                   \
+}                                                                                        \
+
+generate_add_function_wrap_cpp(00)
+generate_add_function_wrap_cpp(01)
+generate_add_function_wrap_cpp(02)
+generate_add_function_wrap_cpp(03)
+generate_add_function_wrap_cpp(04)
+generate_add_function_wrap_cpp(05)
+generate_add_function_wrap_cpp(06)
+generate_add_function_wrap_cpp(07)
+generate_add_function_wrap_cpp(08)
+generate_add_function_wrap_cpp(09)
+generate_add_function_wrap_cpp(10)
+generate_add_function_wrap_cpp(11)
+generate_add_function_wrap_cpp(12)
+generate_add_function_wrap_cpp(13)
+generate_add_function_wrap_cpp(14)
+generate_add_function_wrap_cpp(15)
+
 exprtkWrap::exprtkWrap ()
 {
   exprtk_=new exprtkImp();
@@ -52,4 +78,44 @@ std::string exprtkWrap::getParserError()
     return "EXPRTK OBJECT NULL";
   }
   return exprtk_->getParserError();
+}
+
+int exprtkWrap::addVector(const std::string& vectorName, double* v, const std::size_t& size)
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->addVector(vectorName, v,size);
+}
+
+int exprtkWrap::addConstants()
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->addConstants();
+}
+
+int exprtkWrap::addConstant(const std::string& constantName,double& d)
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->addConstant(constantName,d);
+}
+
+int exprtkWrap::addStringvar(const std::string& stringvarName, std::string& s, const bool isConstant)
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->addStringvar(stringvarName,s,isConstant);
+}
+
+int exprtkWrap::addFileIO()
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->addFileIO();
 }
