@@ -85,8 +85,11 @@ int exprtkImp::addFileIO()
   if(!symbolTable_.add_function("println",println_)){
     return 1;
   }
-  if(!symbolTable_.add_package (fileio_package_)){
+  if(!symbolTable_.add_function("print",print_)){
     return 2;
+  }  
+  if(!symbolTable_.add_package (fileio_package_)){
+    return 3;
   }
   return 0;
 }

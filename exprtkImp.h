@@ -10,6 +10,7 @@
 
 #include "exprtkIF.h"
 #include <string>
+#include <vector>
 #include "exprtk/exprtk.hpp"
 
 typedef exprtk::symbol_table<double> symbol_table_double;
@@ -55,6 +56,7 @@ private:
   parser_double parser_;
   exprtk::rtl::io::file::package<double> fileio_package_;
   exprtk::rtl::io::println<double>       println_;
+  exprtk::rtl::io::print<double>         print_;
 };
 
 #endif /* M_EPICS_EXPRTK_EXPRTKIMP_H_ */
