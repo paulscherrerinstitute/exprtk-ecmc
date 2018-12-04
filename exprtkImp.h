@@ -10,12 +10,18 @@
 
 #include "exprtkIF.h"
 #include <string>
+#include <sstream>
 #include <vector>
+#include <algorithm>
 #include "exprtk/exprtk.hpp"
+
+
+#define EXPRTK_ERROR_TAG "ERROR  => : "
 
 typedef exprtk::symbol_table<double> symbol_table_double;
 typedef exprtk::expression<double>   expression_double;
 typedef exprtk::parser<double>       parser_double;
+
 
 #define generate_add_function_imp_h(NN)                                       \
 int addFunction(const std::string& function_name, ff##NN##_functor function); \
@@ -46,17 +52,25 @@ public:
   int addConstants();
   int addConstant(const std::string& constantName,double& d);
   int addStringvar(const std::string& stringvarName, std::string& s, const bool isConstant);
-  int addFileIO();
+  int addFileIO();  
   int compile(std::string expressionString);
+  int compile();
+  int setExpression(std::string expressionString);
+  std::string getExpression();
   void refresh(void);
-  std::string getParserError();
+  int collectVariables(std::vector<std::string> &varList);
+  int collectFunctions(std::vector<std::string> &funcList);
+  std::string getParserError();  
 private:
+  void initVars();
+  int getLineNumber(std::string str, size_t index);
   symbol_table_double symbolTable_;
   expression_double expression_;
   parser_double parser_;
   exprtk::rtl::io::file::package<double> fileio_package_;
   exprtk::rtl::io::println<double>       println_;
   exprtk::rtl::io::print<double>         print_;
+  std::string expressionString_;
 };
 
 #endif /* M_EPICS_EXPRTK_EXPRTKIMP_H_ */
