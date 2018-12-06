@@ -83,10 +83,11 @@ std::string exprtkImp::getParserError()
   std::stringstream ss;
   std::string exprStingWithError=expressionString_;
   int addedChars=0;
+  int lineNumberOld=-1;
   for (std::size_t i = 0; i < parser_.error_count(); ++i)
   {
-    exprtk::parser_error::type error = parser_.get_error(i);
-    int lineNumber=getLineNumber(expressionString_,error.token.position);
+    exprtk::parser_error::type error = parser_.get_error(i);    
+    int lineNumber=getLineNumber(expressionString_,error.token.position);    
     ss << "\n----------------------------------------------------------------------\n"
        << "Error Index: " << i << "\n"
        << "Position:    " << error.token.position << "\n"
@@ -95,16 +96,19 @@ std::string exprtkImp::getParserError()
        << "Diagnostic:  " << error.diagnostic.c_str() << "\n";  
 
     // Add ERROR TAG to beginning of row (Must compensate for the chars added in previous error)
-    if(exprStingWithError.length()>error.token.position+addedChars){
-      size_t pos=exprStingWithError.rfind('\n',error.token.position+addedChars);
-      if(pos+1<exprStingWithError.length()){
-        exprStingWithError.insert(pos+1,EXPRTK_ERROR_TAG);
-        addedChars+=strlen(EXPRTK_ERROR_TAG);
-     }      
+    if(lineNumberOld!=lineNumber){
+      if(exprStingWithError.length()>error.token.position+addedChars){
+        size_t pos=exprStingWithError.rfind('\n',error.token.position+addedChars);
+        if(pos+1<exprStingWithError.length()){
+          exprStingWithError.insert(pos+1,EXPRTK_ERROR_TAG);
+          addedChars+=strlen(EXPRTK_ERROR_TAG);
+        }      
+      }
     }
+    lineNumberOld=lineNumber;
   }
   ss << "----------------------------------------------------------------------\n";
-  ss << "Code (errors are marked with \"" << EXPRTK_ERROR_TAG << "\"):\n";   
+  ss << "Code (errors are marked with \"" << EXPRTK_ERROR_TAG << "\"):\n\n";   
   ss << exprStingWithError.c_str() << "\n";  
   ss << "----------------------------------------------------------------------\n\n";
   return ss.str();
