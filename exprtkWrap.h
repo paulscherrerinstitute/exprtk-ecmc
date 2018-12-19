@@ -10,6 +10,7 @@
 
 #include "exprtkIF.h"
 #include <string>
+#include <vector>
 
 #define ERROR_ALLOCATION_FAILED 0x30008
 
@@ -44,7 +45,12 @@ public:
   int addStringvar(const std::string& stringvarName, std::string& s, const bool isConstant);
   int addFileIO();
   int compile(std::string expressionString);
+  int compile();
+  int setExpression(std::string expressionString);
+  std::string getExpression();
   void refresh(void);
+  int collectVariables(std::vector<std::string> &varList);
+  int collectFunctions(std::vector<std::string> &funcList);  
   std::string getParserError();
 private:
   exprtkIF *exprtk_;

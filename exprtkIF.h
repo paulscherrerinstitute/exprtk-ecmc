@@ -8,6 +8,7 @@
 #ifndef M_EPICS_EXPRTK_EXPRTKIF_H_
 #define M_EPICS_EXPRTK_EXPRTKIF_H_
 #include <string>
+#include <vector>
 
 typedef double (*ff00_functor)();
 typedef double (*ff01_functor)(double);
@@ -57,7 +58,12 @@ public:
   virtual int addStringvar(const std::string& stringvarName, std::string& s, const bool isConstant)=0;
   virtual int addFileIO()=0;
   virtual int compile(std::string expressionString)=0;
+  virtual int compile()=0;
+  virtual int setExpression(std::string expressionString)=0;
+  virtual std::string getExpression()=0;
   virtual void refresh()=0;
+  virtual int collectVariables(std::vector<std::string> &varList)=0;
+  virtual int collectFunctions(std::vector<std::string> &funcList)=0;  
   virtual std::string getParserError()=0;
 };
 

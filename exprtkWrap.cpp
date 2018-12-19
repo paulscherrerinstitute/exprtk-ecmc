@@ -64,6 +64,29 @@ int exprtkWrap::compile(std::string expressionString)
   return exprtk_->compile(expressionString);
 }
 
+int exprtkWrap::compile()  
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+
+  return exprtk_->compile();  
+}
+
+int exprtkWrap::setExpression(std::string expressionString)  
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+
+  return exprtk_->setExpression(expressionString);  
+}
+
+std::string exprtkWrap::getExpression()  
+{
+  return exprtk_->getExpression();  
+}
+
 void exprtkWrap::refresh(void)
 {
   if(!exprtk_){
@@ -118,4 +141,20 @@ int exprtkWrap::addFileIO()
     return ERROR_ALLOCATION_FAILED;
   }
   return exprtk_->addFileIO();
+}
+
+int exprtkWrap::collectVariables(std::vector<std::string> &varList)
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->collectVariables(varList);
+}
+
+int exprtkWrap::collectFunctions(std::vector<std::string> &funcList)  
+{
+  if(!exprtk_){
+    return ERROR_ALLOCATION_FAILED;
+  }
+  return exprtk_->collectFunctions(funcList);  
 }
