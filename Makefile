@@ -1,16 +1,25 @@
-#Use either the Makefile for EPICS, or the one for
-# ESS EPICS ENVIRONMENT
+TOP=../..
+include $(TOP)/configure/CONFIG
 
-ifdef EPICS_ENV_PATH
-ifeq ($(EPICS_MODULES_PATH),/opt/epics/modules)
-ifeq ($(EPICS_BASES_PATH),/opt/epics/bases)
-include Makefile.EEE
-else
-include Makefile.epics
-endif
-else
-include Makefile.epics
-endif
-else
-include Makefile.epics
-endif
+OPT_CXXFLAGS_YES = -O3
+
+
+LIBRARY_IOC += exprtkSupport
+
+INC += exprtkWrap.h
+INC += exprtkIF.h
+
+exprtkSupport_SRCS += exprtkIF.cpp
+exprtkSupport_SRCS += exprtkImp.cpp
+exprtkSupport_SRCS += exprtkWrap.cpp
+
+
+exprtkSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+
+
+#=============================
+include $(TOP)/configure/RULES
+#----------------------------------------
+#  ADD RULES AFTER THIS LINE
+
