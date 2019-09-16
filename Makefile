@@ -16,8 +16,6 @@ exprtkSupport_SRCS += exprtkIF.cpp
 exprtkSupport_SRCS += exprtkImp.cpp
 exprtkSupport_SRCS += exprtkWrap.cpp
 
-exprtkSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
-
 
 #=============================
 include $(TOP)/configure/RULES
