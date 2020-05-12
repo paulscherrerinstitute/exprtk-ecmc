@@ -52,6 +52,8 @@ public:
   generate_add_function_if_h(13)
   generate_add_function_if_h(14)
   generate_add_function_if_h(15)
+  // interface for inline bool add_function(const std::string& function_name, generic_function_t& function)
+  virtual int addFunction(const std::string& function_name, void* function)=0;
   virtual int addVector(const std::string& vectorName, double* v, const std::size_t& size)=0;
   virtual int addConstants()=0;
   virtual int addConstant(const std::string& constantName,double& d)=0;

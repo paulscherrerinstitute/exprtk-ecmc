@@ -39,6 +39,7 @@ public:
   generate_add_function_wrap_h(13)
   generate_add_function_wrap_h(14)
   generate_add_function_wrap_h(15)
+  int addFunction(const std::string& function_name, void* function);
   int addVector(const std::string& vector_name, double* v, const std::size_t& size);
   int addConstants();
   int addConstant(const std::string& constant_name,double& d);
