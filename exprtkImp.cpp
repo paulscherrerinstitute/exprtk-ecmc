@@ -34,7 +34,8 @@ generate_add_function_imp_cpp(14)
 generate_add_function_imp_cpp(15)
 
 int exprtkImp::addFunction(const std::string& function_name, void* function) {
-  return !symbolTable_.add_function(function_name, (generic_function_t&)function);
+
+  return !symbolTable_.add_function(function_name, (*((generic_function_t*)function)));
 }
 
 exprtkImp::exprtkImp ()
