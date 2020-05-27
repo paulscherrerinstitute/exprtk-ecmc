@@ -7,6 +7,9 @@
 
 #include "exprtkImp.h"
 
+typedef exprtk::igeneric_function<double>       generic_function_t;
+
+
 #define generate_add_function_imp_cpp(NN)                                                \
 int exprtkImp::addFunction(const std::string& functionName, ff##NN##_functor function)   \
 {                                                                                        \
@@ -29,6 +32,11 @@ generate_add_function_imp_cpp(12)
 generate_add_function_imp_cpp(13)
 generate_add_function_imp_cpp(14)
 generate_add_function_imp_cpp(15)
+
+int exprtkImp::addFunction(const std::string& function_name, void* function) {
+
+  return !symbolTable_.add_function(function_name, (*((generic_function_t*)function)));
+}
 
 exprtkImp::exprtkImp ()
 {

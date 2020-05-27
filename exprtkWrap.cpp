@@ -34,6 +34,15 @@ generate_add_function_wrap_cpp(13)
 generate_add_function_wrap_cpp(14)
 generate_add_function_wrap_cpp(15)
 
+
+int exprtkWrap::addFunction(const std::string& function_name, void* function) {
+  if(!exprtk_){                                                                          \
+    return ERROR_ALLOCATION_FAILED;                                                      \
+  }                                                                                      \
+
+  return exprtk_->addFunction(function_name,function);
+}
+
 exprtkWrap::exprtkWrap ()
 {
   exprtk_=new exprtkImp();

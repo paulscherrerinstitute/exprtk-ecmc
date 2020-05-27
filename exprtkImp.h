@@ -22,7 +22,6 @@ typedef exprtk::symbol_table<double> symbol_table_double;
 typedef exprtk::expression<double>   expression_double;
 typedef exprtk::parser<double>       parser_double;
 
-
 #define generate_add_function_imp_h(NN)                                       \
 int addFunction(const std::string& function_name, ff##NN##_functor function); \
 
@@ -48,6 +47,7 @@ public:
   generate_add_function_imp_h(13)
   generate_add_function_imp_h(14)
   generate_add_function_imp_h(15)
+  int addFunction(const std::string& function_name, void* function); // For generic_function_t functions
   int addVector(const std::string& vectorName, double* v, const std::size_t& size);
   int addConstants();
   int addConstant(const std::string& constantName,double& d);
