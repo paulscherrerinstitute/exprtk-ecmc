@@ -50,7 +50,8 @@ exprtkImp::~exprtkImp ()
 
 void exprtkImp::initVars()
 {
-  expressionString_="";
+  expressionString_ = "";
+  compositor_       = NULL; 
 }
 
 int exprtkImp::addVariable(const std::string& variableName, double& d)
@@ -179,4 +180,60 @@ int exprtkImp::collectVariables(std::vector<std::string> &varList)
 int exprtkImp::collectFunctions(std::vector<std::string> &funcList)  
 {
   return !exprtk::collect_functions(expressionString_,symbolTable_,funcList);  
+}
+
+int exprtkImp::addCompositionFunction(const std::string& functionName,
+                                      const std::string& functionExpression,
+                                      std::vector<std::string> &varList) {
+  if(!compositor_) {
+    compositor_ = new compositor_double(symbolTable_);
+    compositor_->clear();
+  }
+  if(!compositor_) {
+    printf("Exprtk Error: compositor_ NULL\n");
+    return 4;
+  }
+
+  //compositor_->add(function_double(functionName.c_str(),functionExpression.c_str(),"x","y"));
+  switch(varList.size()) {
+    case 0:
+      compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str()));
+      break;
+    case 1:
+      compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str(),
+                       varList[1].c_str()));
+      break;
+    case 2:
+      compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str(),
+                       varList[1].c_str(),
+                       varList[2].c_str()));
+      break;
+    case 3:
+      compositor_->add(function_double(functionName,
+                       functionExpression,
+                       varList[0],
+                       varList[1],
+                       varList[2],
+                       varList[3]));
+      break;
+    case 4:
+      compositor_->add(function_double(functionName,
+                       functionExpression,
+                       varList[0],
+                       varList[1],
+                       varList[2],
+                       varList[3],
+                       varList[4]));
+      break;
+    default:
+      printf("Exprtk Error: Function invalid arg count.\n");
+      return 5;
+  }
+
+  return 0;
 }

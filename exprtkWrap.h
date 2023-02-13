@@ -53,6 +53,10 @@ public:
   int collectVariables(std::vector<std::string> &varList);
   int collectFunctions(std::vector<std::string> &funcList);  
   std::string getParserError();
+  int addCompositionFunction(const std::string& function_name,
+                             const std::string& functionExpression,
+                             std::vector<std::string> &varList);
+
 private:
   exprtkIF *exprtk_;
 

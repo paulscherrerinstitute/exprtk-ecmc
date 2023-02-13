@@ -18,10 +18,12 @@
 
 #define EXPRTK_ERROR_TAG "ERROR  => : "
 
-typedef exprtk::symbol_table<double> symbol_table_double;
-typedef exprtk::expression<double>   expression_double;
-typedef exprtk::parser<double>       parser_double;
-
+typedef exprtk::symbol_table<double>        symbol_table_double;
+typedef exprtk::expression<double>          expression_double;
+typedef exprtk::parser<double>              parser_double;
+typedef exprtk::function_compositor<double> compositor_double;
+typedef typename compositor_double::function function_double;
+        
 #define generate_add_function_imp_h(NN)                                       \
 int addFunction(const std::string& function_name, ff##NN##_functor function); \
 
@@ -48,6 +50,9 @@ public:
   generate_add_function_imp_h(14)
   generate_add_function_imp_h(15)
   int addFunction(const std::string& function_name, void* function); // For generic_function_t functions
+  int addCompositionFunction(const std::string& functionName,
+                             const std::string& functionExpression,
+                             std::vector<std::string> &varList);
   int addVector(const std::string& vectorName, double* v, const std::size_t& size);
   int addConstants();
   int addConstant(const std::string& constantName,double& d);
@@ -60,7 +65,8 @@ public:
   void refresh(void);
   int collectVariables(std::vector<std::string> &varList);
   int collectFunctions(std::vector<std::string> &funcList);
-  std::string getParserError();  
+  std::string getParserError();
+  
 private:
   void initVars();
   int getLineNumber(std::string str, size_t index);
@@ -71,6 +77,7 @@ private:
   exprtk::rtl::io::println<double>       println_;
   exprtk::rtl::io::print<double>         print_;
   std::string expressionString_;
+  compositor_double *compositor_;
 };
 
 #endif /* M_EPICS_EXPRTK_EXPRTKIMP_H_ */

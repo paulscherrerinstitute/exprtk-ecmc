@@ -67,6 +67,7 @@ public:
   virtual int collectVariables(std::vector<std::string> &varList)=0;
   virtual int collectFunctions(std::vector<std::string> &funcList)=0;  
   virtual std::string getParserError()=0;
+  virtual int addCompositionFunction(const std::string& function_name,const std::string& functionExpression, std::vector<std::string> &varList) = 0;
 };
 
 #endif /* M_EPICS_EXPRTK_EXPRTKIF_H_ */

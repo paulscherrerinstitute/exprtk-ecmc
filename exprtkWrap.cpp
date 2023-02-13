@@ -167,3 +167,9 @@ int exprtkWrap::collectFunctions(std::vector<std::string> &funcList)
   }
   return exprtk_->collectFunctions(funcList);  
 }
+
+int exprtkWrap::addCompositionFunction(const std::string& functionName, 
+                                       const std::string& functionExpression,
+                                       std::vector<std::string> &varList) {
+  return exprtk_->addCompositionFunction(functionName,functionExpression,varList);
+}
