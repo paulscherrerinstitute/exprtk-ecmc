@@ -186,54 +186,74 @@ int exprtkImp::addCompositionFunction(const std::string& functionName,
                                       const std::string& functionExpression,
                                       std::vector<std::string> &varList) {
   if(!compositor_) {
-    compositor_ = new compositor_double(symbolTable_);
-    compositor_->clear();
+    compositor_ = new compositor_double(symbolTable_);    
   }
+
   if(!compositor_) {
     printf("Exprtk Error: compositor_ NULL\n");
     return 4;
   }
 
+  printf("functionName %s\n",functionName.c_str());
+  printf("functionExpression %s\n",functionExpression.c_str());
+  for(int i=0; i< varList.size();i++) {
+    printf("variable %d = %s\n",i, varList[i].c_str());
+  }
+  
+  bool added=false;
   //compositor_->add(function_double(functionName.c_str(),functionExpression.c_str(),"x","y"));
   switch(varList.size()) {
     case 0:
-      compositor_->add(function_double(functionName.c_str(),
+      added = compositor_->add(function_double(functionName.c_str(),
                        functionExpression.c_str()));
+        
       break;
     case 1:
-      compositor_->add(function_double(functionName.c_str(),
+      added = compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str()));
+      break;
+    case 2:
+      added = compositor_->add(function_double(functionName.c_str(),
                        functionExpression.c_str(),
                        varList[0].c_str(),
                        varList[1].c_str()));
       break;
-    case 2:
-      compositor_->add(function_double(functionName.c_str(),
+    case 3:
+      added = compositor_->add(function_double(functionName.c_str(),
                        functionExpression.c_str(),
                        varList[0].c_str(),
                        varList[1].c_str(),
                        varList[2].c_str()));
       break;
-    case 3:
-      compositor_->add(function_double(functionName,
-                       functionExpression,
-                       varList[0],
-                       varList[1],
-                       varList[2],
-                       varList[3]));
-      break;
     case 4:
-      compositor_->add(function_double(functionName,
-                       functionExpression,
-                       varList[0],
-                       varList[1],
-                       varList[2],
-                       varList[3],
-                       varList[4]));
+      added = compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str(),
+                       varList[1].c_str(),
+                       varList[2].c_str(),
+                       varList[3].c_str()));
       break;
+
+    case 5:
+      added = compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str(),
+                       varList[1].c_str(),
+                       varList[2].c_str(),
+                       varList[3].c_str(),
+                       varList[4].c_str()));
+      break;
+
     default:
       printf("Exprtk Error: Function invalid arg count.\n");
       return 5;
   }
+  
+  //if(!added) {
+  //  printf("Exprtk Error: Add function failed.\n");
+  //  return 6;
+  //}
 
   return 0;
 }
