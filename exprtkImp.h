@@ -68,6 +68,7 @@ private:
   expression_double expression_;
   parser_double parser_;
   exprtk::rtl::io::file::package<double> fileio_package_;
+  exprtk::rtl::vecops::package<double>   vector_package_;
   exprtk::rtl::io::println<double>       println_;
   exprtk::rtl::io::print<double>         print_;
   std::string expressionString_;
