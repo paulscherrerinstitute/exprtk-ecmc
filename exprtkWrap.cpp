@@ -50,6 +50,11 @@ exprtkWrap::exprtkWrap ()
     printf("%s/%s:%d: FAILED TO ALLOCATE MEMORY FOR EXPRTK.\n",__FILE__,__FUNCTION__,__LINE__);
     exit(EXIT_FAILURE);
   }
+  std::string funcName="first_func";
+  std::string funcStr="println('Hello from first_func'); return arg0+arg1+arg2+arg3+arg4+arg5;";
+  std::vector<std::string> args = { "arg0", "arg1", "arg2", "arg3", "arg4", "arg5" };
+  addCompositionFunction(funcName,funcStr,args);
+
 }
 
 exprtkWrap::~exprtkWrap ()
@@ -171,5 +176,6 @@ int exprtkWrap::collectFunctions(std::vector<std::string> &funcList)
 int exprtkWrap::addCompositionFunction(const std::string& functionName, 
                                        const std::string& functionExpression,
                                        std::vector<std::string> &varList) {
+  printf("exprtkWrap::addCompositionFunction()");
   return exprtk_->addCompositionFunction(functionName,functionExpression,varList);
 }

@@ -249,6 +249,19 @@ int exprtkImp::addCompositionFunction(const std::string& functionName,
                        varList[4].c_str()));
       break;
 
+    case 6:
+      added = compositor_->add(function_double(functionName.c_str(),
+                       functionExpression.c_str(),
+                       varList[0].c_str(),
+                       varList[1].c_str(),
+                       varList[2].c_str(),
+                       varList[3].c_str(),
+                       varList[4].c_str(),
+                       varList[5].c_str()
+                       ));
+      break;
+
+
     default:
       printf("Exprtk Error: Function invalid arg count.\n");
       return 5;
