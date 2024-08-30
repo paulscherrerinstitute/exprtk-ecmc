@@ -169,6 +169,10 @@ int exprtkImp::addFileIO()
   if(!symbolTable_.add_package (fileio_package_)){
     return 3;
   }
+  if(!symbolTable_.add_package (vector_package_)){
+    return 4;
+  }
+
   return 0;
 }
 
