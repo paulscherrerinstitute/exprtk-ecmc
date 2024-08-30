@@ -41,7 +41,8 @@ int exprtkImp::addFunction(const std::string& function_name, void* function) {
 exprtkImp::exprtkImp ()
 {
   initVars();
-  symbolTable_.add_constants();  
+  symbolTable_.add_constants();
+  test();
 }
 
 exprtkImp::~exprtkImp ()
@@ -198,13 +199,13 @@ int exprtkImp::addCompositionFunction(const std::string& functionName,
     return 4;
   }
 
-  printf("functionName %s\n",functionName.c_str());
-  printf("functionExpression %s\n",functionExpression.c_str());
-  for(int i=0; i< varList.size();i++) {
-    printf("variable %d = %s\n",i, varList[i].c_str());
-  }
+  //printf("functionName %s\n",functionName.c_str());
+  //printf("functionExpression %s\n",functionExpression.c_str());
+  //for(uint i=0; i< varList.size();i++) {
+  //  printf("variable %d = %s\n",i, varList[i].c_str());
+  //}
   
-  bool added=false;
+  bool added = true;
   //compositor_->add(function_double(functionName.c_str(),functionExpression.c_str(),"x","y"));
   switch(varList.size()) {
     case 0:
@@ -248,29 +249,16 @@ int exprtkImp::addCompositionFunction(const std::string& functionName,
                        varList[3].c_str(),
                        varList[4].c_str()));
       break;
-
-    case 6:
-      added = compositor_->add(function_double(functionName.c_str(),
-                       functionExpression.c_str(),
-                       varList[0].c_str(),
-                       varList[1].c_str(),
-                       varList[2].c_str(),
-                       varList[3].c_str(),
-                       varList[4].c_str(),
-                       varList[5].c_str()
-                       ));
-      break;
-
-
+    
     default:
       printf("Exprtk Error: Function invalid arg count.\n");
       return 5;
   }
   
-  //if(!added) {
-  //  printf("Exprtk Error: Add function failed.\n");
-  //  return 6;
-  //}
+  if(!added) {
+    printf("Exprtk Error: Add function failed.\n");
+    return 6;
+  }
 
   return 0;
 }

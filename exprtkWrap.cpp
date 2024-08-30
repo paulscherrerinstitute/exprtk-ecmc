@@ -50,11 +50,35 @@ exprtkWrap::exprtkWrap ()
     printf("%s/%s:%d: FAILED TO ALLOCATE MEMORY FOR EXPRTK.\n",__FILE__,__FUNCTION__,__LINE__);
     exit(EXIT_FAILURE);
   }
-  std::string funcName="first_func";
-  std::string funcStr="println('Hello from first_func'); return arg0+arg1+arg2+arg3+arg4+arg5;";
-  std::vector<std::string> args = { "arg0", "arg1", "arg2", "arg3", "arg4", "arg5" };
-  addCompositionFunction(funcName,funcStr,args);
-
+  //std::string funcName="zero_func";  // note max 5 args..
+  //std::string funcStr="1000;";
+  //std::vector<std::string> args = {};
+  //addCompositionFunction(funcName,funcStr,args);
+//
+  //funcName="one_func";  // note max 5 args..
+  //funcStr="1000+arg0;";
+  //args = { "arg0" };
+  //addCompositionFunction(funcName,funcStr,args);
+//
+  //funcName="two_func";  // note max 5 args..
+  //funcStr="1000+arg0+arg1;";
+  //args = { "arg0", "arg1" };
+  //addCompositionFunction(funcName,funcStr,args);
+//
+  //funcName="three_func";  // note max 5 args..
+  //funcStr="arg0+arg1+arg2;";
+  //args = { "arg0", "arg1", "arg2" };
+  //addCompositionFunction(funcName,funcStr,args);
+//
+  //funcName="four_func";  // note max 5 args..
+  //funcStr="arg0+arg1+arg2+arg3;";
+  //args = { "arg0", "arg1", "arg2", "arg3" };
+  //addCompositionFunction(funcName,funcStr,args);
+//
+  //funcName="five_func";  // note max 5 args..
+  //funcStr="arg0+arg1+arg2+arg3+arg4;";
+  //args = { "arg0", "arg1", "arg2", "arg3", "arg4" };
+  //addCompositionFunction(funcName,funcStr,args);
 }
 
 exprtkWrap::~exprtkWrap ()
