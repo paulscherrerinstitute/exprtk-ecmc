@@ -42,7 +42,6 @@ exprtkImp::exprtkImp ()
 {
   initVars();
   symbolTable_.add_constants();
-  test();
 }
 
 exprtkImp::~exprtkImp ()

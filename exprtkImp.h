@@ -68,7 +68,6 @@ public:
   std::string getParserError();
   
 private:
-  void test();
   void initVars();
   int getLineNumber(std::string str, size_t index);
   symbol_table_double symbolTable_;
